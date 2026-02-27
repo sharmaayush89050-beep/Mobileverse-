@@ -296,5 +296,38 @@ panel.style.right = "0px";
 }
 }
   </script>
+  <!-- DARK MODE BUTTON -->
+<button onclick="toggleDarkMode()" 
+style="position:fixed;bottom:20px;right:20px;
+padding:10px 15px;border:none;border-radius:30px;
+cursor:pointer;background:#00f2ff;color:black;font-weight:bold;z-index:999;">
+🌙 Toggle Mode
+</button>
+
+<script>
+function toggleDarkMode(){
+document.body.classList.toggle("lightMode");
+}
+</script>
+
+<style>
+.lightMode{
+background:white !important;
+color:black !important;
+}
+
+.lightMode header{
+background:#f0f0f0 !important;
+}
+
+.lightMode .card{
+background:#ffffff !important;
+color:black !important;
+}
+
+.lightMode #cartPanel{
+background:#f9f9f9 !important;
+}
+</style>
 </body>
 </html>
