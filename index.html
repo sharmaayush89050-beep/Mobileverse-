@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MobileVerse</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#000;
+  color:#fff;
+  text-align:center;
+}
+
+h1{
+  padding:20px 0;
+  font-size:28px;
+}
+
+.container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:25px;
+  padding-bottom:40px;
+}
+
+.card{
+  background:#111;
+  width:90%;
+  max-width:400px;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 0 15px rgba(255,255,255,0.1);
+}
+
+.card img{
+  width:80px;
+  height:auto;
+  margin-bottom:15px;
+}
+
+.card h2{
+  margin-bottom:10px;
+}
+
+.price{
+  font-weight:bold;
+  margin-top:5px;
+  color:#00ffcc;
+}
+</style>
+</head>
+
+<body>
+
+<h1>📱 MobileVerse</h1>
+
+<div class="container">
+
+  <div class="card">
+    <img src="apple.png" alt="Apple">
+    <h2>Apple</h2>
+    <p>iPhone 15, 14, 13</p>
+    <p class="price">Starting ₹79,900</p>
+  </div>
+
+  <div class="card">
+    <img src="samsung.png" alt="Samsung">
+    <h2>Samsung</h2>
+    <p>Galaxy S24, Z Fold 5</p>
+    <p class="price">Starting ₹74,999</p>
+  </div>
+
+  <div class="card">
+    <img src="xiaomi.png" alt="Xiaomi">
+    <h2>Xiaomi</h2>
+    <p>Redmi Note 13, Xiaomi 14</p>
+    <p class="price">Starting ₹12,999</p>
+  </div>
+
+  <div class="card">
+    <img src="oneplus.png" alt="OnePlus">
+    <h2>OnePlus</h2>
+    <p>OnePlus 12, Nord CE 3</p>
+    <p class="price">Starting ₹26,999</p>
+  </div>
+
+</div>
+
+</body>
+</html>
