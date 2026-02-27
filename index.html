@@ -329,5 +329,40 @@ color:black !important;
 background:#f9f9f9 !important;
 }
 </style>
+  <style>
+/* FIXED BUTTON CONTAINER */
+.fixedButtons{
+position:fixed;
+top:20px;
+right:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+z-index:1000;
+}
+
+/* COMMON BUTTON STYLE */
+.fixedBtn{
+background:black;
+color:white;
+padding:10px 15px;
+border-radius:30px;
+cursor:pointer;
+font-weight:500;
+border:none;
+}
+</style>
+
+<div class="fixedButtons">
+
+<div onclick="toggleCart()" class="fixedBtn">
+🛒 Cart (<span id="cartCount">0</span>)
+</div>
+
+<button onclick="toggleDarkMode()" class="fixedBtn">
+🌙 Toggle
+</button>
+
+</div>
 </body>
 </html>
