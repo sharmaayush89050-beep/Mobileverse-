@@ -377,5 +377,106 @@ button[onclick="toggleDarkMode()"]{
 display:none !important;
 }
   </style>
+  <script>
+
+/* =========================
+   MOBILEVERSE PRO BASE
+========================= */
+
+/* ===== USER SYSTEM ===== */
+
+function loginUser(username){
+    localStorage.setItem("mvUser", username);
+    alert("Welcome " + username);
+    location.reload();
+}
+
+function logoutUser(){
+    localStorage.removeItem("mvUser");
+    location.reload();
+}
+
+function checkUser(){
+    const user = localStorage.getItem("mvUser");
+    if(user){
+        console.log("Logged in as:", user);
+    }
+}
+
+checkUser();
+
+/* ===== CART SYSTEM (Persistent) ===== */
+
+let cart = JSON.parse(localStorage.getItem("mvCart")) || [];
+
+function addToCart(name, price){
+    cart.push({name, price});
+    localStorage.setItem("mvCart", JSON.stringify(cart));
+    alert(name + " added to cart");
+}
+
+function getCartTotal(){
+    return cart.reduce((total, item) => total + item.price, 0);
+}
+
+function clearCart(){
+    cart = [];
+    localStorage.removeItem("mvCart");
+    alert("Cart cleared");
+}
+
+/* ===== DARK MODE SAVE ===== */
+
+function toggleDark(){
+    document.body.classList.toggle("darkMode");
+    localStorage.setItem("mvTheme",
+        document.body.classList.contains("darkMode") ? "dark" : "light"
+    );
+}
+
+function loadTheme(){
+    const theme = localStorage.getItem("mvTheme");
+    if(theme === "dark"){
+        document.body.classList.add("darkMode");
+    }
+}
+
+loadTheme();
+
+/* ===== LOADING EFFECT ===== */
+
+window.addEventListener("load", function(){
+    document.body.style.opacity = "1";
+});
+
+document.body.style.transition = "0.5s";
+document.body.style.opacity = "0";
+
+</script>
+
+<style>
+
+/* DARK MODE */
+.darkMode{
+    background:#111;
+    color:white;
+}
+
+.darkMode .card{
+    background:#1c1c1c;
+    color:white;
+}
+
+/* Smooth Buttons */
+button{
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+</style>
 </body>
 </html>
