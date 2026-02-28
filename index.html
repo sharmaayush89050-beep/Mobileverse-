@@ -8,11 +8,12 @@ body{
   font-family: Arial, sans-serif;
   margin:0;
   padding:20px;
-  background:#f5f5f5;
+  background:linear-gradient(to right,#ece9e6,#ffffff);
 }
 
 h1{
   text-align:center;
+  margin-bottom:30px;
 }
 
 .products{
@@ -25,15 +26,10 @@ h1{
 .card{
   background:white;
   padding:20px;
-<style>
-.card img{
-  width:100%;
-  height:120px;
-  object-fit:contain;
-  margin-bottom:10px;
-}
-
-.card{
+  width:220px;
+  border-radius:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  text-align:center;
   transition:0.3s;
 }
 
@@ -41,29 +37,87 @@ h1{
   transform:translateY(-5px);
 }
 
+.card img{
+  width:100%;
+  height:150px;
+  object-fit:contain;
+  margin-bottom:10px;
+}
+
+button{
+  padding:8px 15px;
+  border:none;
+  background:black;
+  color:white;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#333;
+}
+
 .cart{
   margin-top:40px;
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
 }
 </style>
 
+</head>
+<body>
+
+<h1>MobileVerse</h1>
+
+<div class="products">
+
+  <div class="card">
+    <img src="https://i.imgur.com/8Km9tLL.png">
+    <h2>iPhone</h2>
+    <p>₹80000</p>
+    <button onclick="addToCart('iPhone',80000)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="https://i.imgur.com/8Km9tLL.png">
+    <h2>Samsung</h2>
+    <p>₹70000</p>
+    <button onclick="addToCart('Samsung',70000)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="https://i.imgur.com/8Km9tLL.png">
+    <h2>Xiaomi</h2>
+    <p>₹50000</p>
+    <button onclick="addToCart('Xiaomi',50000)">Add to Cart</button>
+  </div>
+
+</div>
+
+<div class="cart">
+  <h2>Cart</h2>
+  <ul id="cart"></ul>
+  <h3>Total: ₹<span id="total">0</span></h3>
+</div>
+
 <script>
-/* Images auto add karega existing cards me */
+let total = 0;
 
-document.addEventListener("DOMContentLoaded", function(){
+function addToCart(name,price){
 
-  const images = [
-    "https://i.imgur.com/8Km9tLL.png",
-    "https://i.imgur.com/8Km9tLL.png",
-    "https://i.imgur.com/8Km9tLL.png"
-  ];
+  let cart = document.getElementById("cart");
 
-  const cards = document.querySelectorAll(".card");
+  let li = document.createElement("li");
+  li.textContent = name + " - ₹" + price;
 
-  cards.forEach((card,index)=>{
-    let img = document.createElement("img");
-    img.src = images[index];
-    card.insertBefore(img, card.firstChild);
-  });
+  cart.appendChild(li);
 
-});
+  total += price;
+  document.getElementById("total").textContent = total;
+}
 </script>
+
+</body>
+</html>
