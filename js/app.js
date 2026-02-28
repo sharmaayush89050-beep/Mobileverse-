@@ -1,28 +1,15 @@
-let cart = [];
-let total = 0;
-
-function addToCart(name, price){
-
-    cart.push({name, price});
-    total += price;
-
-    updateCart();
-
+body{
+  font-family: Arial;
 }
 
-function updateCart(){
+.products{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+}
 
-    const cartList = document.getElementById("cart-items");
-    const totalSpan = document.getElementById("total");
-
-    cartList.innerHTML = "";
-
-    cart.forEach(item=>{
-        let li = document.createElement("li");
-        li.textContent = item.name + " - ₹" + item.price;
-        cartList.appendChild(li);
-    });
-
-    totalSpan.textContent = total;
-
+.card{
+  border:1px solid black;
+  padding:15px;
+  text-align:center;
 }
