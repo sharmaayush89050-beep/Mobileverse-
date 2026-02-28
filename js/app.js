@@ -1,1 +1,1 @@
-
+alert("JS Connected 🚀");
