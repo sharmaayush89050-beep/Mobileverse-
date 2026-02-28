@@ -212,5 +212,38 @@ document.querySelectorAll(".card").forEach(card => {
 });
 
   </script>
+  <script>
+
+const brandLogos = {
+  "iPhone": "apple.png",
+  "Samsung": "samsung.png",
+  "Xiaomi": "xiaomi.png",
+  "OnePlus": "oneplus.png"
+};
+
+document.querySelectorAll(".card").forEach(card => {
+
+  let title = card.querySelector("h2");
+  if(!title) return;
+
+  let brandName = title.innerText.trim();
+
+  if(brandLogos[brandName]){
+
+    // duplicate image na lage
+    if(!card.querySelector("img")){
+      let img = document.createElement("img");
+      img.src = brandLogos[brandName];
+      img.style.width = "70px";
+      img.style.marginBottom = "10px";
+
+      card.insertBefore(img, title);
+    }
+
+  }
+
+});
+
+  </script>
 </body>
 </html>
