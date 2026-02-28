@@ -245,5 +245,44 @@ document.querySelectorAll(".card").forEach(card => {
 });
 
   </script>
+  <script>
+
+// Change iPhone text to Apple
+document.querySelectorAll(".card h2").forEach(title => {
+  if(title.innerText.trim() === "iPhone"){
+    title.innerText = "Apple";
+  }
+});
+
+const brandLogos = {
+  "Apple": "apple.png",
+  "Samsung": "samsung.png",
+  "Xiaomi": "xiaomi.png",
+  "OnePlus": "oneplus.png"
+};
+
+document.querySelectorAll(".card").forEach(card => {
+
+  let title = card.querySelector("h2");
+  if(!title) return;
+
+  let brandName = title.innerText.trim();
+
+  if(brandLogos[brandName]){
+
+    if(!card.querySelector("img")){
+      let img = document.createElement("img");
+      img.src = brandLogos[brandName];
+      img.style.width = "70px";
+      img.style.marginBottom = "10px";
+
+      card.insertBefore(img, title);
+    }
+
+  }
+
+});
+
+  </script>
 </body>
 </html>
