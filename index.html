@@ -35,6 +35,17 @@
 <h3>Total: ₹<span id="total">0</span></h3>
 
 <script src="app.js"></script>
+<script>
+/* CSS connect fix */
+var link = document.createElement("link");
+link.rel = "stylesheet";
+link.href = "css/style.css";   // agar css folder me hai
+document.head.appendChild(link);
 
+/* JS connect fix */
+var script = document.createElement("script");
+script.src = "js/app.js";      // agar js folder me hai
+document.body.appendChild(script);
+</script>
 </body>
 </html>
