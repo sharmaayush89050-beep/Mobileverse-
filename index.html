@@ -478,5 +478,22 @@ button:hover{
 }
 
 </style>
+  <!-- ===== MOBILEVERSE CONNECTION TEST ===== -->
+
+<script>
+/* Inline Test */
+alert("Step 1: Inline JS Working ✅");
+</script>
+
+<script src="js/app.js"></script>
+
+<script>
+/* External File Check */
+if (typeof testConnection === "function") {
+    alert("Step 2: External JS Connected 🚀");
+} else {
+    alert("Step 2: External JS NOT Connected ❌");
+}
+</script>
 </body>
 </html>
