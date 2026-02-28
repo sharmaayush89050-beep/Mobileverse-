@@ -515,5 +515,118 @@ document.addEventListener("DOMContentLoaded", function() {
     alert("Website Fully Loaded ✅");
 });
                           </script>
+  <!-- ===== MOBILEVERSE AUTO CART SYSTEM ===== -->
+
+<style>
+#mvCartBox{
+position:fixed;
+top:20px;
+right:20px;
+background:black;
+color:white;
+padding:15px;
+width:250px;
+border-radius:10px;
+z-index:9999;
+font-size:14px;
+}
+#mvCartBox h3{
+margin:0 0 10px 0;
+}
+#mvCartBox button{
+margin-top:5px;
+padding:5px 8px;
+border:none;
+cursor:pointer;
+}
+.mvRemove{
+background:red;
+color:white;
+}
+.mvClear{
+background:orange;
+}
+.mvAddBtn{
+margin-top:8px;
+padding:5px 10px;
+cursor:pointer;
+}
+</style>
+
+<div id="mvCartBox">
+<h3>🛒 Cart (<span id="mvCount">0</span>)</h3>
+<div id="mvItems"></div>
+<p>Total: ₹<span id="mvTotal">0</span></p>
+<button class="mvClear" onclick="mvClearCart()">Clear Cart</button>
+</div>
+
+<script>
+let mvCart = JSON.parse(localStorage.getItem("mvCart")) || [];
+
+function mvSave(){
+localStorage.setItem("mvCart", JSON.stringify(mvCart));
+}
+
+function mvAdd(name, price){
+mvCart.push({name, price});
+mvSave();
+mvRender();
+alert(name + " added 🛒");
+}
+
+function mvRemove(index){
+mvCart.splice(index,1);
+mvSave();
+mvRender();
+}
+
+function mvClearCart(){
+mvCart = [];
+mvSave();
+mvRender();
+}
+
+function mvTotal(){
+return mvCart.reduce((t,i)=>t+i.price,0);
+}
+
+function mvRender(){
+const items = document.getElementById("mvItems");
+const count = document.getElementById("mvCount");
+const total = document.getElementById("mvTotal");
+
+items.innerHTML = "";
+
+mvCart.forEach((item,index)=>{
+items.innerHTML += `
+<div>
+${item.name} - ₹${item.price}
+<button class="mvRemove" onclick="mvRemove(${index})">X</button>
+</div>
+`;
+});
+
+count.innerText = mvCart.length;
+total.innerText = mvTotal();
+}
+
+document.addEventListener("DOMContentLoaded", mvRender);
+
+/* ===== AUTO ADD BUTTONS TO ALL CARDS ===== */
+document.addEventListener("DOMContentLoaded", function(){
+document.querySelectorAll(".card").forEach(card=>{
+const name = card.querySelector("h3")?.innerText;
+const priceText = card.querySelector(".price")?.innerText;
+if(name && priceText){
+const price = parseInt(priceText.replace(/[^\d]/g,""));
+const btn = document.createElement("button");
+btn.innerText = "Add to Cart";
+btn.className = "mvAddBtn";
+btn.onclick = function(){ mvAdd(name, price); };
+card.appendChild(btn);
+}
+});
+});
+</script>
 </body>
 </html>
