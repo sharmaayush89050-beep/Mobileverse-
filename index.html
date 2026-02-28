@@ -4,7 +4,51 @@
   <title>Mobile Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
+  <style>/* ===== PREMIUM DESIGN ADD-ON ===== */
+
+header {
+  background: linear-gradient(135deg, #141e30, #243b55);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  letter-spacing: 1px;
+}
+
+.card {
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.card img {
+  transition: 0.3s;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+button {
+  background: linear-gradient(45deg, #00c853, #009624);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.07);
+}
+
+body {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
     body {
       font-family: Arial;
       margin: 0;
