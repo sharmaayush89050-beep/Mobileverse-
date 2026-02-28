@@ -628,5 +628,82 @@ card.appendChild(btn);
 });
 });
 </script>
+  <!-- ===== NORMAL CART SECTION ===== -->
+
+<section id="mvCartSection" style="margin-top:40px; padding:20px; background:#111; color:white;">
+  <h2>🛒 Your Cart (<span id="mvCount">0</span>)</h2>
+  <div id="mvItems"></div>
+  <h3>Total: ₹<span id="mvTotal">0</span></h3>
+  <button onclick="mvClearCart()" style="padding:8px 15px; cursor:pointer;">Clear Cart</button>
+</section>
+
+<script>
+let mvCart = JSON.parse(localStorage.getItem("mvCart")) || [];
+
+function mvSave(){
+localStorage.setItem("mvCart", JSON.stringify(mvCart));
+}
+
+function mvAdd(name, price){
+mvCart.push({name, price});
+mvSave();
+mvRender();
+alert(name + " added to cart 🛒");
+}
+
+function mvRemove(index){
+mvCart.splice(index,1);
+mvSave();
+mvRender();
+}
+
+function mvClearCart(){
+mvCart = [];
+mvSave();
+mvRender();
+}
+
+function mvTotal(){
+return mvCart.reduce((t,i)=>t+i.price,0);
+}
+
+function mvRender(){
+const items = document.getElementById("mvItems");
+const count = document.getElementById("mvCount");
+const total = document.getElementById("mvTotal");
+
+items.innerHTML = "";
+
+mvCart.forEach((item,index)=>{
+items.innerHTML += `
+<div style="margin-bottom:8px;">
+${item.name} - ₹${item.price}
+<button onclick="mvRemove(${index})" style="margin-left:10px;">Remove</button>
+</div>
+`;
+});
+
+count.innerText = mvCart.length;
+total.innerText = mvTotal();
+}
+
+document.addEventListener("DOMContentLoaded", mvRender);
+
+/* Auto Add Button To Product Cards */
+document.addEventListener("DOMContentLoaded", function(){
+document.querySelectorAll(".card").forEach(card=>{
+const name = card.querySelector("h3")?.innerText;
+const priceText = card.querySelector(".price")?.innerText;
+if(name && priceText){
+const price = parseInt(priceText.replace(/[^\d]/g,""));
+const btn = document.createElement("button");
+btn.innerText = "Add to Cart";
+btn.style.marginTop = "10px";
+btn.onclick = function(){ mvAdd(name, price); };
+card.appendChild(btn);
+}
+});
+});
+  </script>
 </body>
 </html>
