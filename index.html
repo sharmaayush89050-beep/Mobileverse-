@@ -495,5 +495,20 @@ if (typeof testConnection === "function") {
     alert("Step 2: External JS NOT Connected ❌");
 }
 </script>
+  <!-- ===== MOBILEVERSE CONNECTION TEST ===== -->
+
+<script>
+alert("Step 1: Inline JS Working ✅");
+</script>
+
+<script src="js/app.js"></script>
+
+<script>
+if (typeof testConnection === "function") {
+    alert("Step 2: External JS Connected 🚀");
+} else {
+    alert("Step 2: External JS NOT Connected ❌");
+}
+</script>
 </body>
 </html>
