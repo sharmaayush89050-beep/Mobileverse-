@@ -2,50 +2,26 @@
 <html>
 <head>
 <title>MobileVerse</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-<h1 style="text-align:center;">MobileVerse</h1>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  padding:20px;
+  background:#f5f5f5;
+}
 
-<div class="products">
+h1{
+  text-align:center;
+}
 
-  <div class="card">
-    <h2>iPhone</h2>
-    <p>₹80000</p>
-    <button onclick="addToCart('iPhone',80000)">Add to Cart</button>
-  </div>
+.products{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
 
-  <div class="card">
-    <h2>Samsung</h2>
-    <p>₹70000</p>
-    <button onclick="addToCart('Samsung',70000)">Add to Cart</button>
-  </div>
-
-  <div class="card">
-    <h2>Xiaomi</h2>
-    <p>₹50000</p>
-    <button onclick="addToCart('Xiaomi',50000)">Add to Cart</button>
-  </div>
-
-</div>
-
-<h2>Cart</h2>
-<ul id="cart"></ul>
-<h3>Total: ₹<span id="total">0</span></h3>
-
-<script src="app.js"></script>
-<script>
-/* CSS connect fix */
-var link = document.createElement("link");
-link.rel = "stylesheet";
-link.href = "css/style.css";   // agar css folder me hai
-document.head.appendChild(link);
-
-/* JS connect fix */
-var script = document.createElement("script");
-script.src = "js/app.js";      // agar js folder me hai
-document.body.appendChild(script);
-</script>
-</body>
-</html>
+.card{
+  background:white;
+  padding:20px;
