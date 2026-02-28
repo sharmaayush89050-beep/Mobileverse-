@@ -124,6 +124,35 @@ function addToCart(name, price){
   document.getElementById("count").innerText = count;
 }
 </script>
+<script>
 
+// ===== ADD ONEPLUS PRODUCT =====
+let productsDiv = document.querySelector(".products");
+
+if(productsDiv){
+  let card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <h2>OnePlus</h2>
+    <p>₹60000</p>
+    <button onclick="addToCart('OnePlus',60000)">Add to Cart</button>
+  `;
+  productsDiv.appendChild(card);
+}
+
+// ===== ADD LOGO TOP =====
+let header = document.querySelector("h1");
+
+if(header){
+  let logo = document.createElement("img");
+  logo.src = "https://cdn-icons-png.flaticon.com/512/1041/1041889.png";
+  logo.style.width = "60px";
+  logo.style.display = "block";
+  logo.style.margin = "0 auto 10px auto";
+
+  header.parentNode.insertBefore(logo, header);
+}
+
+</script>
 </body>
 </html>
