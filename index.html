@@ -1,288 +1,172 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MobileVerse</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-  font-family: Arial;
-  margin:0;
-  padding:20px;
-  background:#f4f4f4;
-}
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #f4f4f4;
+      text-align: center;
+    }
 
-h1{
-  text-align:center;
-}
+    header {
+      background: black;
+      color: white;
+      padding: 15px;
+      font-size: 22px;
+    }
 
-.products{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:20px;
-  margin-top:20px;
-}
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px;
+    }
 
-.card{
-  background:white;
-  padding:20px;
-  width:220px;
-  text-align:center;
-  border-radius:10px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
+    .card {
+      background: white;
+      width: 220px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
 
-button{
-  padding:8px 15px;
-  background:black;
-  color:white;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-  margin-top:10px;
-}
+    .card img {
+      width: 70px;
+      margin-bottom: 10px;
+    }
 
-button:hover{
-  opacity:0.8;
-}
+    button {
+      background: green;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
 
-.cart{
-  margin-top:40px;
-  background:white;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
+    button:hover {
+      background: darkgreen;
+    }
 
-.total{
-  font-size:18px;
-  font-weight:bold;
-  color:green;
-}
+    .cart {
+      position: fixed;
+      right: 10px;
+      top: 80px;
+      width: 250px;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: left;
+    }
 
-.cart-count{
-  background:red;
-  color:white;
-  padding:4px 8px;
-  border-radius:50%;
-  font-size:12px;
-  margin-left:5px;
-}
-</style>
+    .cart h3 {
+      margin-top: 0;
+    }
+
+    .cart-item {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .remove-btn {
+      background: red;
+      padding: 3px 6px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+
+    .total {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+  </style>
 </head>
 
 <body>
 
-<h1>
-MobileVerse 🛒 <span id="count" class="cart-count">0</span>
-</h1>
+<header>Mobile Store</header>
 
-<div class="products">
+<div class="container">
 
-<div class="card">
-<h2>iPhone</h2>
-<p>₹80000</p>
-<button onclick="addToCart('iPhone',80000)">Add to Cart</button>
-</div>
+  <div class="card">
+    <img src="apple.png">
+    <h2>Apple</h2>
+    <p>₹50000</p>
+    <button onclick="addToCart('Apple',50000)">Add to Cart</button>
+  </div>
 
-<div class="card">
-<h2>Samsung</h2>
-<p>₹70000</p>
-<button onclick="addToCart('Samsung',70000)">Add to Cart</button>
-</div>
+  <div class="card">
+    <img src="samsung.png">
+    <h2>Samsung</h2>
+    <p>₹40000</p>
+    <button onclick="addToCart('Samsung',40000)">Add to Cart</button>
+  </div>
 
-<div class="card">
-<h2>Xiaomi</h2>
-<p>₹50000</p>
-<button onclick="addToCart('Xiaomi',50000)">Add to Cart</button>
-</div>
+  <div class="card">
+    <img src="xiaomi.png">
+    <h2>Xiaomi</h2>
+    <p>₹20000</p>
+    <button onclick="addToCart('Xiaomi',20000)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="oneplus.png">
+    <h2>OnePlus</h2>
+    <p>₹35000</p>
+    <button onclick="addToCart('OnePlus',35000)">Add to Cart</button>
+  </div>
 
 </div>
 
 <div class="cart">
-<h2>Cart Items</h2>
-<ul id="cart"></ul>
-<p class="total">Total: ₹<span id="total">0</span></p>
+  <h3>Cart (<span id="count">0</span>)</h3>
+  <div id="cart-items"></div>
+  <div class="total">Total: ₹<span id="total">0</span></div>
 </div>
 
 <script>
+
+let cart = [];
 let total = 0;
-let count = 0;
 
-function addToCart(name, price){
-
-  let li = document.createElement("li");
-  li.innerText = name + " - ₹" + price;
-
-  document.getElementById("cart").appendChild(li);
-
+function addToCart(name, price) {
+  cart.push({name, price});
   total += price;
-  count++;
+  updateCart();
+}
 
+function removeItem(index) {
+  total -= cart[index].price;
+  cart.splice(index,1);
+  updateCart();
+}
+
+function updateCart() {
+  document.getElementById("count").innerText = cart.length;
   document.getElementById("total").innerText = total;
-  document.getElementById("count").innerText = count;
-}
-</script>
-<script>
 
-// ===== ADD ONEPLUS PRODUCT =====
-let productsDiv = document.querySelector(".products");
+  let cartItems = document.getElementById("cart-items");
+  cartItems.innerHTML = "";
 
-if(productsDiv){
-  let card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `
-    <h2>OnePlus</h2>
-    <p>₹60000</p>
-    <button onclick="addToCart('OnePlus',60000)">Add to Cart</button>
-  `;
-  productsDiv.appendChild(card);
-}
-
-// ===== ADD LOGO TOP =====
-let header = document.querySelector("h1");
-
-if(header){
-  let logo = document.createElement("img");
-  logo.src = "https://cdn-icons-png.flaticon.com/512/1041/1041889.png";
-  logo.style.width = "60px";
-  logo.style.display = "block";
-  logo.style.margin = "0 auto 10px auto";
-
-  header.parentNode.insertBefore(logo, header);
+  cart.forEach((item, index) => {
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        ${item.name} - ₹${item.price}
+        <button class="remove-btn" onclick="removeItem(${index})">X</button>
+      </div>
+    `;
+  });
 }
 
 </script>
-  <script>
 
-const brandLogos = {
-  "iPhone": "iphone.png",
-  "Samsung": "samsung.png",
-  "Xiaomi": "xiaomi.png",
-  "OnePlus": "oneplus.png"
-};
-
-document.querySelectorAll(".card").forEach(card => {
-
-  let title = card.querySelector("h2");
-  if(!title) return;
-
-  let brandName = title.innerText.trim();
-
-  if(brandLogos[brandName]){
-
-    let img = document.createElement("img");
-    img.src = brandLogos[brandName];
-    img.style.width = "70px";
-    img.style.marginBottom = "10px";
-
-    card.insertBefore(img, title);
-  }
-
-});
-
-  </script>
-  <script>
-
-const brandLogos = {
-  "iPhone": "apple.png",
-  "Samsung": "samsung.png",
-  "Xiaomi": "xiaomi.png",
-  "OnePlus": "oneplus.png"
-};
-
-document.querySelectorAll(".card").forEach(card => {
-
-  let title = card.querySelector("h2");
-  if(!title) return;
-
-  let brandName = title.innerText.trim();
-
-  if(brandLogos[brandName]){
-
-    let img = document.createElement("img");
-    img.src = brandLogos[brandName];
-    img.style.width = "70px";
-    img.style.marginBottom = "10px";
-
-    card.insertBefore(img, title);
-  }
-
-});
-
-  </script>
-  <script>
-
-const brandLogos = {
-  "iPhone": "apple.png",
-  "Samsung": "samsung.png",
-  "Xiaomi": "xiaomi.png",
-  "OnePlus": "oneplus.png"
-};
-
-document.querySelectorAll(".card").forEach(card => {
-
-  let title = card.querySelector("h2");
-  if(!title) return;
-
-  let brandName = title.innerText.trim();
-
-  if(brandLogos[brandName]){
-
-    // duplicate image na lage
-    if(!card.querySelector("img")){
-      let img = document.createElement("img");
-      img.src = brandLogos[brandName];
-      img.style.width = "70px";
-      img.style.marginBottom = "10px";
-
-      card.insertBefore(img, title);
-    }
-
-  }
-
-});
-
-  </script>
-  <script>
-
-// Change iPhone text to Apple
-document.querySelectorAll(".card h2").forEach(title => {
-  if(title.innerText.trim() === "iPhone"){
-    title.innerText = "Apple";
-  }
-});
-
-const brandLogos = {
-  "Apple": "apple.png",
-  "Samsung": "samsung.png",
-  "Xiaomi": "xiaomi.png",
-  "OnePlus": "oneplus.png"
-};
-
-document.querySelectorAll(".card").forEach(card => {
-
-  let title = card.querySelector("h2");
-  if(!title) return;
-
-  let brandName = title.innerText.trim();
-
-  if(brandLogos[brandName]){
-
-    if(!card.querySelector("img")){
-      let img = document.createElement("img");
-      img.src = brandLogos[brandName];
-      img.style.width = "70px";
-      img.style.marginBottom = "10px";
-
-      card.insertBefore(img, title);
-    }
-
-  }
-
-});
-
-  </script>
 </body>
 </html>
