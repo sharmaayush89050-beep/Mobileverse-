@@ -1,55 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MobileVerse</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <h1>MobileVerse</h1>
-</header>
+<h1 style="text-align:center;">MobileVerse</h1>
 
-<section class="products">
+<div class="products">
 
-    <div class="card">
-        <img src="https://i.imgur.com/8Km9tLL.png" alt="iPhone">
-        <h2>iPhone 15</h2>
-        <p>₹79,999</p>
-        <button onclick="addToCart('iPhone 15',79999)">Add to Cart</button>
-    </div>
+  <div class="card">
+    <h2>iPhone</h2>
+    <p>₹80000</p>
+    <button onclick="addToCart('iPhone',80000)">Add to Cart</button>
+  </div>
 
-    <div class="card">
-        <img src="https://i.imgur.com/8Km9tLL.png" alt="Samsung">
-        <h2>Samsung S24</h2>
-        <p>₹74,999</p>
-        <button onclick="addToCart('Samsung S24',74999)">Add to Cart</button>
-    </div>
+  <div class="card">
+    <h2>Samsung</h2>
+    <p>₹70000</p>
+    <button onclick="addToCart('Samsung',70000)">Add to Cart</button>
+  </div>
 
-    <div class="card">
-        <img src="https://i.imgur.com/8Km9tLL.png" alt="OnePlus">
-        <h2>OnePlus 12</h2>
-        <p>₹64,999</p>
-        <button onclick="addToCart('OnePlus 12',64999)">Add to Cart</button>
-    </div>
+  <div class="card">
+    <h2>Xiaomi</h2>
+    <p>₹50000</p>
+    <button onclick="addToCart('Xiaomi',50000)">Add to Cart</button>
+  </div>
 
-    <div class="card">
-        <img src="https://i.imgur.com/8Km9tLL.png" alt="Xiaomi">
-        <h2>Xiaomi 14</h2>
-        <p>₹59,999</p>
-        <button onclick="addToCart('Xiaomi 14',59999)">Add to Cart</button>
-    </div>
+</div>
 
-</section>
-
-<section class="cart">
-    <h2>Cart</h2>
-    <ul id="cart-items"></ul>
-    <h3>Total: ₹<span id="total">0</span></h3>
-</section>
+<h2>Cart</h2>
+<ul id="cart"></ul>
+<h3>Total: ₹<span id="total">0</span></h3>
 
 <script src="app.js"></script>
+
 </body>
 </html>
