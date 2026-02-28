@@ -723,5 +723,17 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 </script>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    // Sab purane Add to Cart buttons hide karo
+    document.querySelectorAll("button").forEach(function(btn) {
+        if (btn.textContent.trim().toLowerCase() === "add to cart") {
+            btn.style.display = "none";
+        }
+    });
+
+});
+  </script>
 </body>
 </html>
