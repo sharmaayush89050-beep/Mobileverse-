@@ -1,15 +1,14 @@
-body{
-  font-family: Arial;
-}
+let total = 0;
 
-.products{
-  display:flex;
-  gap:20px;
-  justify-content:center;
-}
+function addToCart(name,price){
 
-.card{
-  border:1px solid black;
-  padding:15px;
-  text-align:center;
+  let cart = document.getElementById("cart");
+
+  let li = document.createElement("li");
+  li.textContent = name + " - ₹" + price;
+
+  cart.appendChild(li);
+
+  total += price;
+  document.getElementById("total").textContent = total;
 }
