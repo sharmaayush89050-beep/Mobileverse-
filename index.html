@@ -705,5 +705,23 @@ card.appendChild(btn);
 });
 });
   </script>
+  <!-- ===== REMOVE OLD ADD TO CART BUTTONS ===== -->
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+    /* 1️⃣ Remove old Add to Cart buttons */
+    document.querySelectorAll("button").forEach(btn=>{
+        if(btn.innerText.toLowerCase().includes("add to cart")){
+            btn.remove();
+        }
+    });
+
+    /* 2️⃣ Stop old addToCart functions if exist */
+    window.addToCart = function(){
+        console.log("Old cart disabled");
+    };
+
+});
+</script>
 </body>
 </html>
